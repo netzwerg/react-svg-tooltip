@@ -4,7 +4,7 @@ A React component to create tooltips for SVG elements.
 
 ## Example Usage
 
-```tsx
+```jsx
 import * as React from 'react';
 import { Tooltip } from 'react-svg-tooltip';
 
