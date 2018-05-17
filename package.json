@@ -1,8 +1,12 @@
 {
   "name": "react-svg-tooltip",
-  "version": "0.0.0",
-  "description": "",
-  "keywords": [],
+  "version": "0.0.1",
+  "description": "React component to create tooltips for SVG elements",
+  "keywords": [
+    "react",
+    "svg",
+    "tooltip"
+  ],
   "main": "dist/react-svg-tooltip.umd.js",
   "module": "dist/react-svg-tooltip.es2015.js",
   "typings": "dist/types/react-svg-tooltip.d.ts",
@@ -12,7 +16,7 @@
   "author": "Rahel Lüthy <rahel.luethy@gmail.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/netzwerg/react-svg-tooltip"
   },
   "license": "MIT",
   "engines": {
@@ -54,6 +58,8 @@
     "@types/node": "^8.0.0",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
+    "@types/d3-selection": "^1.3.0",
+    "@types/lodash": "^4.14.108",
     "codelyzer": "^3.2.0",
     "colors": "^1.1.2",
     "cross-env": "^5.0.1",
@@ -84,8 +90,6 @@
     "react-dom": "^16.3.2"
   },
   "dependencies": {
-    "@types/d3-selection": "^1.3.0",
-    "@types/lodash": "^4.14.108",
     "d3-selection": "^1.3.0"
   }
 }
