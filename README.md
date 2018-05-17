@@ -1,4 +1,4 @@
-# React SVG Tooltip image:https://travis-ci.org/fhnw-stec/stec-recorder.svg?branch=master["Build Status", link="https://travis-ci.org/netzwerg/react-svg-tooltip"]
+# React SVG Tooltip [![Build Status](https://travis-ci.org/fhnw-stec/stec-recorder.svg?branch=master)](https://travis-ci.org/netzwerg/react-svg-tooltip)
 
 A React component to create tooltips for SVG elements.
 
@@ -30,10 +30,10 @@ export default App;
 
 ## Acknowledgements
 
-Based on https://github.com/tonysneed/typescript-library-starter-lite.git
+Based on [typescript-library-starter-lite](https://github.com/tonysneed/typescript-library-starter-lite.git).
 
 ## License
 
-All source code is available under the link:LICENSE[MIT License].
+Licensed under link:LICENSE[MIT License].
 
-(C) Rahel Lüthy 2018
+&copy; Rahel Lüthy 2018
