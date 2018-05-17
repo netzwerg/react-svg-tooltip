@@ -1,3 +1,9 @@
-# React SVG Tooltip
+# React SVG Tooltip image:image:https://travis-ci.org/fhnw-stec/stec-recorder.svg?branch=master["Build Status", link="https://travis-ci.org/fhnw-stec/stec-recorder"]["Build Status", link="https://travis-ci.org/netzwerg/react-svg-tooltip"]
 
 Based on https://github.com/tonysneed/typescript-library-starter-lite.git
+
+## License
+
+All source code is available under the link:LICENSE[MIT License].
+
+(C) Rahel Lüthy 2018
