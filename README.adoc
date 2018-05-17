@@ -1,0 +1,3 @@
+# React SVG Tooltip
+
+Based on https://github.com/tonysneed/typescript-library-starter-lite.git

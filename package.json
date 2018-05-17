@@ -1,0 +1,91 @@
+{
+  "name": "react-svg-tooltip",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "dist/react-svg-tooltip.umd.js",
+  "module": "dist/react-svg-tooltip.es2015.js",
+  "typings": "dist/types/react-svg-tooltip.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "Rahel Lüthy <rahel.luethy@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "lint": "tslint --type-check -p 'tsconfig.json' codeFrame 'src/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "build": "tsc && rollup -c && rimraf compiled && typedoc --out dist/docs --target es6 --theme minimal --exclude '**/*.spec.ts' src",
+    "start": "tsc-watch --onSuccess \"rollup -c\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
+    "deploy-docs": "ts-node tools/gh-pages-publish",
+    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "modulePathIgnorePatterns": [
+      "models"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ]
+  },
+  "devDependencies": {
+    "@angular/compiler": "^4.3.6",
+    "@angular/core": "^4.3.6",
+    "@types/jest": "^20.0.0",
+    "@types/node": "^8.0.0",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "codelyzer": "^3.2.0",
+    "colors": "^1.1.2",
+    "cross-env": "^5.0.1",
+    "husky": "^0.14.0",
+    "jest": "^21.0.0",
+    "lint-staged": "^4.0.0",
+    "lodash.camelcase": "^4.3.0",
+    "prompt": "^1.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts-ts": "2.16.0",
+    "replace-in-file": "^2.5.0",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.49.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "ts-jest": "^21.0.0",
+    "ts-node": "^3.0.6",
+    "tsc-watch": "^1.0.5",
+    "tslint": "^5.7.0",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.8.3",
+    "zone.js": "^0.8.17"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "dependencies": {
+    "@types/d3-selection": "^1.3.0",
+    "@types/lodash": "^4.14.108",
+    "d3-selection": "^1.3.0"
+  }
+}
