@@ -3,11 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { clientPoint } from 'd3-selection';
 
 export type Props = {
-    readonly mouseTrigger: React.RefObject<SVGElement>
-    readonly width: number;
-    readonly height: number;
-    readonly xOffset?: number;
-    readonly yOffset?: number;
+    readonly for: React.RefObject<SVGElement>
 };
 
 export type TooltipHidden = {
@@ -28,7 +24,7 @@ export class TooltipComponent extends React.Component<Props, State> {
     readonly state: Readonly<State> = {type: 'TooltipHidden'};
 
     componentDidMount() {
-        const mouseTrigger = this.props.mouseTrigger.current;
+        const mouseTrigger = this.props.for.current;
         if (mouseTrigger) {
             mouseTrigger.onmouseover = this.updateTooltip(mouseTrigger);
             mouseTrigger.onmousemove = this.updateTooltip(mouseTrigger);
@@ -40,8 +36,8 @@ export class TooltipComponent extends React.Component<Props, State> {
         if (this.state.type === 'TooltipHidden') {
             return <g/>;
         } else {
-            const x = this.state.x + (this.props.xOffset || 0);
-            const y = this.state.y + (this.props.yOffset || 0);
+            const x = this.state.x;
+            const y = this.state.y;
 
             const tooltip =
                 (
@@ -50,7 +46,6 @@ export class TooltipComponent extends React.Component<Props, State> {
                         transform={`translate(${x}, ${y})`}
                         pointerEvents="none" // tooltip should never grab mouse > prevent flickering
                     >
-                        <rect x={0} y={0} width={this.props.width} height={this.props.height}/>
                         {this.props.children}
                     </g>
                 );
