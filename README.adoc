@@ -1,4 +1,4 @@
-# React SVG Tooltip image:image:https://travis-ci.org/fhnw-stec/stec-recorder.svg?branch=master["Build Status", link="https://travis-ci.org/fhnw-stec/stec-recorder"]["Build Status", link="https://travis-ci.org/netzwerg/react-svg-tooltip"]
+# React SVG Tooltip image:https://travis-ci.org/fhnw-stec/stec-recorder.svg?branch=master["Build Status", link="https://travis-ci.org/netzwerg/react-svg-tooltip"]
 
 Based on https://github.com/tonysneed/typescript-library-starter-lite.git
 
