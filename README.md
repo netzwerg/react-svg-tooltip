@@ -28,6 +28,8 @@ const App = () => {
 export default App;
 ```
 
+![Example Usage](screenshot.png)
+
 ## Acknowledgements
 
 Based on [typescript-library-starter-lite](https://github.com/tonysneed/typescript-library-starter-lite.git).
