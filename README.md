@@ -34,6 +34,6 @@ Based on [typescript-library-starter-lite](https://github.com/tonysneed/typescri
 
 ## License
 
-Licensed under link:LICENSE[MIT License].
+Licensed under [MIT License](LICENSE).
 
 &copy; Rahel Lüthy 2018
