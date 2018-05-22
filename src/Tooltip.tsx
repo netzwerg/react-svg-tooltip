@@ -26,9 +26,9 @@ export class TooltipComponent extends React.Component<Props, State> {
     componentDidMount() {
         const mouseTrigger = this.props.for.current;
         if (mouseTrigger) {
-            mouseTrigger.onmouseover = this.updateTooltip(mouseTrigger);
-            mouseTrigger.onmousemove = this.updateTooltip(mouseTrigger);
-            mouseTrigger.onmouseout = () => this.setState({type: 'TooltipHidden'});
+            mouseTrigger.addEventListener(`mouseover`, this.updateTooltipListener);
+            mouseTrigger.addEventListener(`mousemove`, this.updateTooltipListener);
+            mouseTrigger.addEventListener(`mouseleave`, this.hideTooltipListener);
         }
     }
 
@@ -54,19 +54,31 @@ export class TooltipComponent extends React.Component<Props, State> {
         }
     }
 
-    private updateTooltip(mouseTriggerElement: SVGElement) {
-        return (evt: MouseEvent) => {
-            if (mouseTriggerElement.ownerSVGElement) {
-                const mousePosition = clientPoint(mouseTriggerElement.ownerSVGElement, evt);
+    componentWillUnmount() {
+        const mouseTrigger = this.props.for.current;
+        if (mouseTrigger) {
+            mouseTrigger.removeEventListener(`mouseover`, this.updateTooltipListener);
+            mouseTrigger.removeEventListener(`mousemove`, this.updateTooltipListener);
+            mouseTrigger.removeEventListener(`mouseleave`, this.hideTooltipListener);
+        }
+    }
+
+    private readonly updateTooltipListener = (evt: MouseEvent) => {
+        const mouseTrigger = this.props.for.current;
+        if (mouseTrigger) {
+            if (mouseTrigger.ownerSVGElement) {
+                const mousePosition = clientPoint(mouseTrigger.ownerSVGElement, evt);
                 this.setState({
                     type: 'TooltipVisible',
-                    svgSvgElement: mouseTriggerElement.ownerSVGElement,
+                    svgSvgElement: mouseTrigger.ownerSVGElement,
                     x: mousePosition[0],
                     y: mousePosition[1]
                 });
             }
-        };
+        }
     }
+
+    private readonly hideTooltipListener = () => this.setState({type: 'TooltipHidden'});
 
 }
 
