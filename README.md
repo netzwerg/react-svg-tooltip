@@ -13,7 +13,7 @@ You might want to read [this blog post](https://netzwerg.ch/blog/2018/05/24/reac
 
 `npm install react-svg-tooltip`
 
-Note that `react` and `react-dom` peer dependencies must already be installed in version `^16.3.2`.
+Note that `react` and `react-dom` peer dependencies must already be installed in version `16.3.x` or above.
 
 ## Example Usage
 
