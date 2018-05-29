@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { clientPoint } from 'd3-selection';
+import svgPoint from './svg-point';
 
 export type Props = {
     readonly for: React.RefObject<SVGElement>
@@ -67,7 +67,7 @@ export class TooltipComponent extends React.Component<Props, State> {
         const mouseTrigger = this.props.for.current;
         if (mouseTrigger) {
             if (mouseTrigger.ownerSVGElement) {
-                const mousePosition = clientPoint(mouseTrigger.ownerSVGElement, evt);
+                const mousePosition = svgPoint(mouseTrigger.ownerSVGElement, evt);
                 this.setState({
                     type: 'TooltipVisible',
                     svgSvgElement: mouseTrigger.ownerSVGElement,
