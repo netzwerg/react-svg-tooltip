@@ -18,7 +18,7 @@ Note that `react` and `react-dom` peer dependencies must already be installed in
 ## Example Usage
 
 This example demonstrates how to attach a rectangular tooltip with some text to a circle shape.
-The `for` property accepts a reference to an arbitrary element (a circle in our example), which further serves as the mouse trigger.
+The `triggerRef` property accepts a reference to an arbitrary element (a circle in our example), which further serves as the mouse trigger.
 Note how the x/y-coordinates of the tooltip contents (`rect` and `text`) can be expressed relative to the mouse position. 
 
 ```jsx
@@ -33,7 +33,7 @@ const App = () => {
         <div className='App'>
             <svg viewBox='0 0 100 100'>
                 <circle ref={circleRef} cx={50} cy={50} r={10} fill='steelblue'/>
-                <Tooltip for={circleRef}>
+                <Tooltip triggerRef={circleRef}>
                     <rect x={2} y={2} width={10} height={5} rx={.5} ry={.5} fill='black'/>
                     <text x={5} y={5} fontSize={2} fill='white'>Yay!</text>
                 </Tooltip>

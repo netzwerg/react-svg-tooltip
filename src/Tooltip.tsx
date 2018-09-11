@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import svgPoint from './svg-point';
 
-export type Props = {
-    readonly for: React.RefObject<SVGElement>
-};
+export type Props = Readonly<{
+    triggerRef: React.RefObject<SVGElement>
+    containerRef?: React.RefObject<SVGSVGElement>
+}>;
 
 export type TooltipHidden = {
     readonly type: 'TooltipHidden'
@@ -24,7 +25,7 @@ export class TooltipComponent extends React.Component<Props, State> {
     readonly state: Readonly<State> = {type: 'TooltipHidden'};
 
     componentDidMount() {
-        const mouseTrigger = this.props.for.current;
+        const mouseTrigger = this.props.triggerRef.current;
         if (mouseTrigger) {
             mouseTrigger.addEventListener(`mouseover`, this.updateTooltipListener);
             mouseTrigger.addEventListener(`mousemove`, this.updateTooltipListener);
@@ -55,7 +56,7 @@ export class TooltipComponent extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        const mouseTrigger = this.props.for.current;
+        const mouseTrigger = this.props.triggerRef.current;
         if (mouseTrigger) {
             mouseTrigger.removeEventListener(`mouseover`, this.updateTooltipListener);
             mouseTrigger.removeEventListener(`mousemove`, this.updateTooltipListener);
@@ -64,21 +65,28 @@ export class TooltipComponent extends React.Component<Props, State> {
     }
 
     private readonly updateTooltipListener = (evt: MouseEvent) => {
-        const mouseTrigger = this.props.for.current;
-        if (mouseTrigger) {
-            if (mouseTrigger.ownerSVGElement) {
-                const mousePosition = svgPoint(mouseTrigger.ownerSVGElement, evt);
-                this.setState({
-                    type: 'TooltipVisible',
-                    svgSvgElement: mouseTrigger.ownerSVGElement,
-                    x: mousePosition[0],
-                    y: mousePosition[1]
-                });
-            }
+        const mouseTrigger = this.props.triggerRef.current;
+        const svg = this.props.containerRef
+            ? this.props.containerRef.current
+            : (mouseTrigger ? mouseTrigger.ownerSVGElement : undefined);
+        if (svg) {
+            const mousePosition = svgPoint(svg, evt);
+            svg.setAttribute('visibility', 'visible');
+            this.setState({
+                type: 'TooltipVisible',
+                svgSvgElement: svg,
+                x: mousePosition[0],
+                y: mousePosition[1]
+            });
         }
     }
 
-    private readonly hideTooltipListener = () => this.setState({type: 'TooltipHidden'});
+    private readonly hideTooltipListener = () => {
+        if (this.props.containerRef && this.props.containerRef.current) {
+            this.props.containerRef.current.setAttribute('visibility', 'hidden');
+        }
+        this.setState({type: 'TooltipHidden'});
+    }
 
 }
 
