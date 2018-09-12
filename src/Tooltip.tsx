@@ -71,7 +71,6 @@ export class TooltipComponent extends React.Component<Props, State> {
             : (mouseTrigger ? mouseTrigger.ownerSVGElement : undefined);
         if (svg) {
             const mousePosition = svgPoint(svg, evt);
-            svg.setAttribute('visibility', 'visible');
             this.setState({
                 type: 'TooltipVisible',
                 svgSvgElement: svg,
@@ -79,12 +78,9 @@ export class TooltipComponent extends React.Component<Props, State> {
                 y: mousePosition[1]
             });
         }
-    }
+    };
 
     private readonly hideTooltipListener = () => {
-        if (this.props.containerRef && this.props.containerRef.current) {
-            this.props.containerRef.current.setAttribute('visibility', 'hidden');
-        }
         this.setState({type: 'TooltipHidden'});
     }
 

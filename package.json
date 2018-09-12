@@ -1,6 +1,6 @@
 {
   "name": "react-svg-tooltip",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "React component to create tooltips for SVG elements",
   "keywords": [
     "react",
