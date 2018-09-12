@@ -45,7 +45,7 @@ const App = () => {
 export default App;
 ```
 
-[![Edit pk7p4y9v3q](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pk7p4y9v3q)
+[![Edit 4wjoopo1vx](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4wjoopo1vx)
 
 ![Example Usage](screenshot.png)
 
