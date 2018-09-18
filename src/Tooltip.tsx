@@ -1,3 +1,4 @@
+/* tslint:disable:no-console */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import svgPoint from './svg-point';
@@ -26,7 +27,7 @@ export class TooltipComponent extends React.Component<Props, State> {
 
     componentDidMount() {
         const mouseTrigger = this.props.triggerRef.current;
-        if (mouseTrigger) {
+        if (mouseTrigger && mouseTrigger.addEventListener) {
             mouseTrigger.addEventListener(`mouseover`, this.updateTooltipListener);
             mouseTrigger.addEventListener(`mousemove`, this.updateTooltipListener);
             mouseTrigger.addEventListener(`mouseleave`, this.hideTooltipListener);
@@ -57,7 +58,7 @@ export class TooltipComponent extends React.Component<Props, State> {
 
     componentWillUnmount() {
         const mouseTrigger = this.props.triggerRef.current;
-        if (mouseTrigger) {
+        if (mouseTrigger && mouseTrigger.removeEventListener) {
             mouseTrigger.removeEventListener(`mouseover`, this.updateTooltipListener);
             mouseTrigger.removeEventListener(`mousemove`, this.updateTooltipListener);
             mouseTrigger.removeEventListener(`mouseleave`, this.hideTooltipListener);
@@ -65,18 +66,20 @@ export class TooltipComponent extends React.Component<Props, State> {
     }
 
     private readonly updateTooltipListener = (evt: MouseEvent) => {
-        const mouseTrigger = this.props.triggerRef.current;
-        const svg = this.props.containerRef
-            ? this.props.containerRef.current
-            : (mouseTrigger ? mouseTrigger.ownerSVGElement : undefined);
-        if (svg) {
-            const mousePosition = svgPoint(svg, evt);
-            this.setState({
-                type: 'TooltipVisible',
-                svgSvgElement: svg,
-                x: mousePosition[0],
-                y: mousePosition[1]
-            });
+        if (this.props) {
+            const mouseTrigger = this.props.triggerRef.current;
+            const svg = this.props.containerRef
+                ? this.props.containerRef.current
+                : (mouseTrigger ? mouseTrigger.ownerSVGElement : undefined);
+            if (svg) {
+                const mousePosition = svgPoint(svg, evt);
+                this.setState({
+                    type: 'TooltipVisible',
+                    svgSvgElement: svg,
+                    x: mousePosition[0],
+                    y: mousePosition[1]
+                });
+            }
         }
     };
 
