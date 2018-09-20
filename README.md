@@ -97,15 +97,7 @@ const App = () => {
       </svg>
 
       <Tooltip triggerRef={triggerRef1} containerRef={containerRef}>
-        <rect
-          x={2}
-          y={2}
-          width={40}
-          height={8}
-          rx={0.5}
-          ry={0.5}
-          fill="black"
-        />
+        <rect x={2} y={2} width={40} height={8} rx={0.5} ry={0.5} fill="black" />
         <text x={22} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 1</tspan>
           <tspan x={22} dy="1em">
@@ -115,15 +107,7 @@ const App = () => {
       </Tooltip>
 
       <Tooltip triggerRef={triggerRef2} containerRef={containerRef}>
-        <rect
-          x={-18}
-          y={2}
-          width={40}
-          height={8}
-          rx={0.5}
-          ry={0.5}
-          fill="black"
-        />
+        <rect x={-18} y={2} width={40} height={8} rx={0.5} ry={0.5} fill="black" />
         <text x={2} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 2</tspan>
           <tspan x={2} dy="1em">
@@ -133,15 +117,7 @@ const App = () => {
       </Tooltip>
 
       <Tooltip triggerRef={triggerRef3} containerRef={containerRef}>
-        <rect
-          x={-38}
-          y={2}
-          width={40}
-          height={8}
-          rx={0.5}
-          ry={0.5}
-          fill="black"
-        />
+        <rect x={-38} y={2} width={40} height={8} rx={0.5} ry={0.5} fill="black" />
         <text x={-18} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 3</tspan>
           <tspan x={-18} dy="1em">
