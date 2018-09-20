@@ -109,7 +109,7 @@ const App = () => {
         <text x={22} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 1</tspan>
           <tspan x={22} dy="1em">
-            yet spanning across SVG broundaries
+            yet spanning across SVG boundaries
           </tspan>
         </text>
       </Tooltip>
@@ -127,7 +127,7 @@ const App = () => {
         <text x={2} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 2</tspan>
           <tspan x={2} dy="1em">
-            yet spanning across SVG broundaries
+            yet spanning across SVG boundaries
           </tspan>
         </text>
       </Tooltip>
@@ -145,7 +145,7 @@ const App = () => {
         <text x={-18} y={5} fontSize={2} fill="white">
           <tspan>A tooltip triggered by SVG 3</tspan>
           <tspan x={-18} dy="1em">
-            yet spanning across SVG broundaries
+            yet spanning across SVG boundaries
           </tspan>
         </text>
       </Tooltip>
