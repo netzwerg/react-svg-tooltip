@@ -5,7 +5,7 @@
  * @param svg the root svg container element
  * @param event the mouse event
  */
-const svgPoint = (svg: SVGSVGElement, event: MouseEvent) => {
+export const svgPoint = (svg: SVGSVGElement, event: MouseEvent) => {
     if (svg.createSVGPoint) {
         let point = svg.createSVGPoint();
         point.x = event.clientX;
