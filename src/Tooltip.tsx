@@ -2,23 +2,24 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import svgPoint from './svg-point'
 
-export type Props = Readonly<{
+type Props = Readonly<{
     triggerRef: React.RefObject<SVGElement>
     containerRef?: React.RefObject<SVGSVGElement>
+    children: React.ReactNode | ((xOffset: number, yOffset: number) => React.ReactNode)
 }>
 
-export type TooltipHidden = {
-    readonly type: 'TooltipHidden'
-}
+type TooltipHidden = Readonly<{
+    type: 'TooltipHidden'
+}>
 
-export type TooltipVisible = {
-    readonly type: 'TooltipVisible'
-    readonly svgSvgElement: SVGSVGElement
-    readonly x: number
-    readonly y: number
-}
+type TooltipVisible = Readonly<{
+    type: 'TooltipVisible'
+    svgSvgElement: SVGSVGElement
+    x: number
+    y: number
+}>
 
-export type State = TooltipHidden | TooltipVisible
+type State = TooltipHidden | TooltipVisible
 
 export class TooltipComponent extends React.Component<Props, State> {
     public readonly state: Readonly<State> = { type: 'TooltipHidden' }
@@ -45,7 +46,7 @@ export class TooltipComponent extends React.Component<Props, State> {
                     transform={`translate(${x}, ${y})`}
                     pointerEvents="none" // tooltip should never grab mouse > prevent flickering
                 >
-                    {this.props.children}
+                    {this.props.children instanceof Function ? this.props.children(x, y) : this.props.children}
                 </g>
             )
 
