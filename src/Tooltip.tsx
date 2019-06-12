@@ -24,12 +24,17 @@ type State = TooltipHidden | TooltipVisible
 export class TooltipComponent extends React.Component<Props, State> {
     public readonly state: Readonly<State> = { type: 'TooltipHidden' }
 
+    // Keep a reference to the mouse event triggering DOM node
+    // `triggerRef` may be null by the time we want to remove listeners
+    private safeMouseTrigger
+
     public componentDidMount() {
         const mouseTrigger = this.props.triggerRef.current
         if (mouseTrigger && mouseTrigger.addEventListener) {
-            mouseTrigger.addEventListener(`mouseover`, this.updateTooltipListener)
-            mouseTrigger.addEventListener(`mousemove`, this.updateTooltipListener)
-            mouseTrigger.addEventListener(`mouseleave`, this.hideTooltipListener)
+            this.safeMouseTrigger = mouseTrigger
+            mouseTrigger.addEventListener(`mouseover`, this.updateTooltip)
+            mouseTrigger.addEventListener(`mousemove`, this.updateTooltip)
+            mouseTrigger.addEventListener(`mouseleave`, this.hideTooltip)
         }
     }
 
@@ -55,21 +60,19 @@ export class TooltipComponent extends React.Component<Props, State> {
     }
 
     public componentWillUnmount() {
-        const mouseTrigger = this.props.triggerRef.current
-        if (mouseTrigger && mouseTrigger.removeEventListener) {
-            mouseTrigger.removeEventListener(`mouseover`, this.updateTooltipListener)
-            mouseTrigger.removeEventListener(`mousemove`, this.updateTooltipListener)
-            mouseTrigger.removeEventListener(`mouseleave`, this.hideTooltipListener)
+        if (this.safeMouseTrigger && this.safeMouseTrigger.removeEventListener) {
+            this.safeMouseTrigger.removeEventListener(`mouseover`, this.updateTooltip)
+            this.safeMouseTrigger.removeEventListener(`mousemove`, this.updateTooltip)
+            this.safeMouseTrigger.removeEventListener(`mouseleave`, this.hideTooltip)
         }
     }
 
-    private readonly updateTooltipListener = (evt: MouseEvent) => {
+    private readonly updateTooltip = (evt: MouseEvent) => {
         if (this.props) {
-            const mouseTrigger = this.props.triggerRef.current
             const svg = this.props.containerRef
                 ? this.props.containerRef.current
-                : mouseTrigger
-                ? mouseTrigger.ownerSVGElement
+                : this.safeMouseTrigger
+                ? this.safeMouseTrigger.ownerSVGElement
                 : undefined
             if (svg) {
                 const mousePosition = svgPoint(svg, evt)
@@ -83,7 +86,7 @@ export class TooltipComponent extends React.Component<Props, State> {
         }
     }
 
-    private readonly hideTooltipListener = () => {
+    private readonly hideTooltip = () => {
         this.setState({ type: 'TooltipHidden' })
     }
 }
