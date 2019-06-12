@@ -7,14 +7,14 @@
  */
 const svgPoint = (svg: SVGSVGElement, event: MouseEvent) => {
     if (svg.createSVGPoint) {
-        let point = svg.createSVGPoint();
-        point.x = event.clientX;
-        point.y = event.clientY;
-        point = point.matrixTransform(svg.getScreenCTM().inverse());
-        return [point.x, point.y];
+        let point = svg.createSVGPoint()
+        point.x = event.clientX
+        point.y = event.clientY
+        point = point.matrixTransform(svg.getScreenCTM().inverse())
+        return [point.x, point.y]
     }
-    const rect = svg.getBoundingClientRect();
-    return [event.clientX - rect.left - svg.clientLeft, event.clientY - rect.top - svg.clientTop];
-};
+    const rect = svg.getBoundingClientRect()
+    return [event.clientX - rect.left - svg.clientLeft, event.clientY - rect.top - svg.clientTop]
+}
 
-export default svgPoint;
+export default svgPoint
